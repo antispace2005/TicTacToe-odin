@@ -1,5 +1,12 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 :root {
   --spotColor: aqua;
+  --winingLine: red;
 }
 
 .board {

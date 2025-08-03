@@ -137,6 +137,10 @@ const gameRenderer = (function () {
   const winnerElement = document.getElementById("winner");
   const historyLog = document.getElementById("historyLog");
   const newRoundButton = document.getElementById("newRound");
+  const xNameElement = document.getElementById("xName");
+  const ONameElement = document.getElementById("oName");
+  let xName = "x";
+  let OName = "o";
   let isThereWinner = false;
   let winnerName = game.getWinner();
   let currentPlayerName = game.getTurn();
@@ -149,23 +153,47 @@ const gameRenderer = (function () {
         updateDisplay();
       });
     }
-
+    xNameElement.addEventListener("change", (e) => {
+      xName = e.target.value;
+      if (xName == "") {
+        xName = "x";
+      }
+      updateDisplay();
+    });
+    ONameElement.addEventListener("change", (e) => {
+      OName = e.target.value;
+      if (oName == "") {
+        oName = "o";
+      }
+      updateDisplay();
+    });
     newRoundButton.addEventListener("click", resetGame);
   }
 
+  function symbolToName(sym) {
+    if (sym == "x") {
+      return xName;
+    } else if (sym == "o") {
+      return OName;
+    } else {
+      return sym;
+    }
+  }
   function updateDisplay() {
     //update board
     for (let i = 0; i < 9; i++) {
       spots[i].textContent = game.getSpot(i);
     }
     //update status
-    winnerName = game.getWinner();
-    currentPlayerName = game.getTurn();
+
+    winnerName = symbolToName(game.getWinner());
+    currentPlayerName = symbolToName(game.getTurn());
+
     const winLine = game.getWinLine();
     currentPlayerNameElement.textContent = currentPlayerName;
     if (winnerName) {
-      stateElement.style.visibility = "hidden";
-      winnerElement.style.visibility = "visible";
+      stateElement.style.display = "none";
+      winnerElement.style.display = "block";
       if (!isThereWinner) {
         CurrentWinnerElement = document.createElement("li");
         if (winnerName == "draw") {
@@ -182,18 +210,18 @@ const gameRenderer = (function () {
       } else {
         winnerElement.textContent = winnerName + " Has Won The Game!!";
         for (const spot of winLine) {
-          spots[spot].style["background-color"] = "red";
+          spots[spot].style["background-color"] = "var(--winingLine)";
         }
       }
     } else {
-      winnerElement.style.visibility = "hidden";
-      stateElement.style.visibility = "visible";
+      winnerElement.style.display = "none";
+      stateElement.style.display = "block";
     }
   }
   function resetGame() {
     isThereWinner = false;
-    winnerName = game.getWinner();
-    currentPlayerName = game.getTurn();
+    winnerName = symbolToName(game.getWinner());
+    currentPlayerName = symbolToName(game.getTurn());
     game.initGame();
     updateDisplay();
     for (let i = 0; i < 9; i++) {
