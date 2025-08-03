@@ -5,8 +5,15 @@
 }
 
 :root {
-  --spotColor: aqua;
-  --winingLine: red;
+  --primaryColor: #689b8a;
+  --secondaryColor: #280a3e;
+
+  --spotColor: var(--primaryColor);
+  --winingLine: var(--secondaryColor);
+  --bgColor: #f2edd1;
+}
+body {
+  background-color: var(--bgColor);
 }
 
 .board {
@@ -17,4 +24,25 @@
   aspect-ratio: 1 / 1;
   background-color: var(--spotColor);
   border: 1px solid black;
+  border-radius: 10px;
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bgColor);
+}
+h1 {
+  text-align: center;
+  color: var(--secondaryColor);
+}
+h2 {
+  text-align: center;
+  color: var(--secondaryColor);
+}
+
+label {
+  font-size: 24px;
+}
+input {
+  font-size: inherit;
 }

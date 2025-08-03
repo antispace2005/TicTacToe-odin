@@ -182,7 +182,7 @@ const gameRenderer = (function () {
   function updateDisplay() {
     //update board
     for (let i = 0; i < 9; i++) {
-      spots[i].textContent = game.getSpot(i);
+      spots[i].textContent = game.getSpot(i).toString().toUpperCase();
     }
     //update status
 
