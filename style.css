@@ -1,0 +1,13 @@
+:root {
+  --spotColor: aqua;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, 150px));
+}
+.spot {
+  aspect-ratio: 1 / 1;
+  background-color: var(--spotColor);
+  border: 1px solid black;
+}

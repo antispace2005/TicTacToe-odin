@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>TicTacToe</h1>
+    <div class="gameContainer">
+      <div id="CurrentPlayer">Current Player Turn: <span>#Player</span></div>
+      <div id="winner"></div>
+
+      <div class="board">
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+        <div class="spot"></div>
+      </div>
+      <div class="buttons"><button id="newRound">New Round</button></div>
+      <h2>History</h2>
+      <div class="history"><ol id="historyLog"></ol></div>
+    </div>
+  </body>
+</html>
