@@ -8,9 +8,9 @@ const game = (function () {
   let winner = "";
   function initGame() {
     board = [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""],
     ];
     winner = undefined;
     turnCount = 0;
@@ -35,7 +35,7 @@ const game = (function () {
     spot--;
     if (!(spot <= 8 && spot >= 0)) {
       console.log("Invalid Input Choose Number From 1 to 9");
-    } else if (typeof board[parseInt(spot / 3)][spot % 3] == "string") {
+    } else if (board[parseInt(spot / 3)][spot % 3] != "") {
       console.log("Spot Is Taken");
     } else {
       if (is_player_x_turn) {
@@ -68,13 +68,21 @@ const game = (function () {
   function checkBoard() {
     for (let i = 0; i < 3; i++) {
       // Rows Check
-      if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+      if (
+        board[i][0] == board[i][1] &&
+        board[i][1] == board[i][2] &&
+        board[i][1] != ""
+      ) {
         for (let j = 0; j < 3; j++) {
           winLine.push(i * 3 + j);
         }
         return board[i][0];
       } // Columns Check
-      else if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
+      else if (
+        board[0][i] == board[1][i] &&
+        board[1][i] == board[2][i] &&
+        board[1][i] != ""
+      ) {
         for (let j = 0; j < 3; j++) {
           winLine.push(j * 3 + i);
         }
@@ -82,11 +90,19 @@ const game = (function () {
       }
     }
     // Diagonals Check
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+    if (
+      board[0][0] == board[1][1] &&
+      board[1][1] == board[2][2] &&
+      board[1][1] != ""
+    ) {
       winLine = [0, 4, 8];
       return board[1][1];
     }
-    if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+    if (
+      board[0][2] == board[1][1] &&
+      board[1][1] == board[2][0] &&
+      board[1][1] != ""
+    ) {
       winLine = "diag " + 2;
       winLine = [2, 4, 6];
 
@@ -107,7 +123,7 @@ const game = (function () {
   }
   function clearUnused() {
     for (let i = 0; i < 9; i++) {
-      if (!(typeof board[parseInt(i / 3)][i % 3] == "string")) {
+      if (!(board[parseInt(i / 3)][i % 3] != "")) {
         board[parseInt(i / 3)][i % 3] = "";
       }
     }
